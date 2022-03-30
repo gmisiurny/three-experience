@@ -14,19 +14,19 @@ export default [
         name: 'environmentMapTexture',
         type: 'cubeTexture',
         path: [
-            'textures/foo/bar.jpg',     
-            'textures/foo/baz.jpg'
+            'static/textures/foo/bar.jpg',     
+            'static/textures/foo/baz.jpg'
         ]
     },
     {
         name: 'fooTexture',
         type: 'texture',
-        path: 'textures/foo/bar.jpg'
+        path: 'static/textures/foo/bar.jpg'
     },
     {
         name: 'barTexture',
         type: 'texture',
-        path: 'textures/bar/baz.jpg'
+        path: 'static/textures/bar/baz.jpg'
     }
 ]
 ```
@@ -51,4 +51,31 @@ this.resources.on('ready', () => {
 > //Setup
 > this.sphere = new Sphere()
 > this.environment = new Environment()
+
+- Edit the object that requires the resource
+
+Ex:
+
+```javascript
+export default class Sphere {
+    constructor() {
+        this.experience = new Experience()
+        this.scene = this.experience.scene
+        this.debug = this.experience.debug
+        this.resources = this.experience.resources // load your resource
+        // ...
+    }
+
+    // ...
+    setMaterial() {        
+        this.material = new MeshStandardMaterial({            
+            map: this.resources.items.sphereTexture
+        })
+    }
+    // ...
+}
+
+```
+> **_NOTE:_** sphereTexture references the type of the resource in  
+> sources.js
 
