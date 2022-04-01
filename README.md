@@ -1,5 +1,5 @@
 
-# Three-cli v0.0.0
+# Three template
 
 ## Resources
 
